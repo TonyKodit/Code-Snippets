@@ -312,3 +312,21 @@ const txt = '{"name":"John", "age":30, "city":"New York"}'
 const obj = JSON.parse(txt);
 document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
 </script>
+    
+<!---15 -----<h2> Implementing Viewbag</h2>-------------->
+    public IActionResult Create() 
+        {
+            DataSet de = dbop.GetMMSCompany();
+
+            List<SelectListItem> list1 = new List<SelectListItem>();
+            list1.Add(new SelectListItem { Text = "Select Company", Value = "" });
+            foreach (DataRow dr in de.Tables[0].Rows)
+            {
+                
+                list1.Add(new SelectListItem { Text = dr["Company"].ToString(), Value = dr["Company"].ToString() });
+            }
+
+            ViewBag.MMSCustomersList = list1;
+
+            return View();
+        }
