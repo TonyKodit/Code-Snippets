@@ -334,3 +334,10 @@ document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
     <!--16----------------Adding migration when there are more than 1 DbContext----------------------------------------------->
     
     add-migration AddBlogPostsToDatbase -Context BlogPostDbContext
+
+                
+<!--17---------Write Log to a file--------------------------------------------------------------------------------------------->
+                Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
+    .WriteTo.File("log/villaLogs.txt", rollingInterval: RollingInterval.Day).CreateLogger();
+
+builder.Host.UseSerilog();
